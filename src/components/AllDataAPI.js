@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios'
 import CardOfAllData from './CardOfAllData'
+import './grid.css'
 class AllDataAPI extends Component {
 constructor(props){
     super(props);
@@ -11,9 +12,17 @@ constructor(props){
 }
 
 addFavorite = async (title,imgUrl)=>{
+
+    
+    let  titlee =title 
+    let img =imgUrl 
+    let email2 = this.props.auth0.user.email
+  
+
     console.log(imgUrl)
-let addData = `${process.env.REACT_APP_SERVER}/addData?title=${title}&img=${imgUrl}`
+let addData = `${process.env.REACT_APP_SERVER}/addData?title=${titlee}&img=${img}&email=${email2}`
 let addFavoriteData = await axios.post(addData)
+console.log(addFavoriteData)
 
 }
 
@@ -28,12 +37,19 @@ componentDidMount =async()=>{
 
     render() {
         return (
-            <div>
+            <div >
                 <h1>All Data from the API</h1>
                 <h3>Select your favorites :)</h3>
                 {this.state.allData.map((item,index)=>{
 
-                  return(<CardOfAllData item = {item} key={index} add ={this.addFavorite}/>) 
+                  return(
+                  
+                  <div className="grid">
+                  <CardOfAllData item = {item} key={index} add ={this.addFavorite} />
+                  
+                  
+                  </div>
+                  ) 
                     
 
                 })}

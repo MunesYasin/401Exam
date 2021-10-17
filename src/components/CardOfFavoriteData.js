@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+
 
 
 
@@ -18,10 +19,14 @@ class CrdOfData extends React.Component{
 render(){
     return(
         <>
-        <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src={this.props.item.imageUrl} />
+       
+
+        
+       
+        <Card style={{ width: '18rem' }} className="row">
+  <Card.Img variant="top" src={this.props.item.img1} />
   <Card.Body>
-    <Card.Title>{this.props.item.title}</Card.Title>
+    <Card.Title>{this.props.item.titlee}</Card.Title>
     
     <Button variant="primary" onClick={this.deletee}>Delete</Button>
     <Button variant="primary" onClick={this.updatee}>Update</Button>

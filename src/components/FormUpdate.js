@@ -1,30 +1,29 @@
 
 
-import React, { Component } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-
 
 
 class Formmm extends React.Component{
 
 render(){
     return(
-        <Form>
+        <Form onSubmit={this.props.upd}>
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Title</Form.Label>
-    <Form.Control name="title" defaultValue={this.props.info.title} />
+    <Form.Control name="title" defaultValue={this.props.info.titlee} />
   
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="formBasicPassword">
     <Form.Label>ImgUrl</Form.Label>
-    <Form.Control name="url" defaultValue={this.props.info.imageUrl} />
+    <Form.Control name="url" defaultValue={this.props.info.img1} />
   </Form.Group>
   
-  <Button variant="primary" type="submit" onClick={this.props.upd}>
-Update   </Button>
+  <input type="submit" value="Update" />
+  <Button onClick={this.props.close}>Close</Button>
 </Form>
     )
 }

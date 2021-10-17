@@ -17,9 +17,9 @@ class MyFavorites extends React.Component {
 }
 
 delete=async(item)=>{
-  
+  let email2=this.props.auth0.user.email
  let dataId = item
- let deleteData = `${process.env.REACT_APP_SERVER}/delete?dataID=${dataId}`
+ let deleteData = `${process.env.REACT_APP_SERVER}/delete?dataID=${dataId}&emaill=${email2}`
 let getdata = await axios.delete(deleteData)
 this.setState({
   favoriteData : getdata.data
@@ -38,22 +38,32 @@ showFormUpdate=(item)=>{
 
 update =async (e)=>{
   e.preventDefault();
-
- let title = e.target.title.value
- //let imageUrl = e.target.url.vale
+  let email2=this.props.auth0.user.email
+ let titleee = e.target.title.value
+ console.log(titleee)
+ let imageUrl = e.target.url.vale
  let dataID = this.state.formInfo._id
+ console.log(dataID)
 
-
- let getdata = `${process.env.REACT_APP_SERVER}/update?title=${title}&id=${dataID}`
+ let getdata = `${process.env.REACT_APP_SERVER}/update?title=${titleee}&id=${dataID}&emaill=${email2}&img=${imageUrl}`
  let newData = await axios.put(getdata)
  this.setState({
-  favoriteData : newData.data
+  favoriteData : newData.data,
+  showForm : false,
 })
 
 }
 
+closeForm = ()=>{
+  this.setState({
+    
+    showForm : false,
+  })
+}
+
 componentDidMount =async()=>{
-  let getData = `${process.env.REACT_APP_SERVER}/getFavorite`
+  let email2=this.props.auth0.user.email
+  let getData = `${process.env.REACT_APP_SERVER}/getFavorite?emaill=${email2}`
   let newData = await axios.get(getData)
   console.log(newData)
   this.setState({
@@ -79,7 +89,7 @@ componentDidMount =async()=>{
        
        }
        {this.state.showForm &&
-           <FormUpdate info = {this.state.formInfo} upd={this.update}/>
+           <FormUpdate info = {this.state.formInfo} upd={this.update} close={this.closeForm}/>
 }
 
       </>
