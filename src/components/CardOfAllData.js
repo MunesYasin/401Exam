@@ -8,7 +8,7 @@ import './grid.css'
 
 class CrdOfData extends React.Component{
 addd = ()=>{
-this.props.add(this.props.item.title,this.props.item.imageUrl)
+this.props.add(this.props.item.title,this.props.item.imgUrl)
 }
 render(){
     return(
@@ -16,7 +16,7 @@ render(){
       
         <Card style={{ width: '18rem' }} > 
          
-  <Card.Img variant="top" src={this.props.item.imageUrl} />
+  <Card.Img variant="top" src={this.props.item.imgUrl} />
   <Card.Body>
     <Card.Title>{this.props.item.title}</Card.Title>
     

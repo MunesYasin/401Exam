@@ -29,7 +29,7 @@ console.log(addFavoriteData)
 componentDidMount =async()=>{
     let getData = `${process.env.REACT_APP_SERVER}/getAllData`
     let newData = await axios.get(getData)
-    console.log(newData)
+    console.log(newData.data)
     this.setState({
         allData : newData.data
     })
